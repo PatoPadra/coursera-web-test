@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/auxiliares.cpp
+definiciones.h
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/definiciones.h
+auxiliares.h
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/auxiliares.h
+ejercicios.h
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/ejercicios.h
+
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/auxiliares.h
+definiciones.h
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/definiciones.h
+
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/definiciones.h
+vector
+-
+cmath
+-
+algorithm
+-
+
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/ejercicios.h
+definiciones.h
+C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/definiciones.h
+

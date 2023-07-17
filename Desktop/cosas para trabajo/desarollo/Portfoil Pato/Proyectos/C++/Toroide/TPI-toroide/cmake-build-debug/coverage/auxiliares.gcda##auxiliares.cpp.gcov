@@ -1,0 +1,186 @@
+        -:    0:Source:C:/Users/pato/Desktop/Algoritmos/labo/tp implementacion/TPI-template/TPI-toroide/auxiliares.cpp
+        -:    0:Graph:C:\Users\pato\Desktop\Algoritmos\labo\tp implementacion\TPI-template\TPI-toroide\cmake-build-debug\CMakeFiles\juegoDeLaVida.dir\auxiliares.gcno
+        -:    0:Data:C:\Users\pato\Desktop\Algoritmos\labo\tp implementacion\TPI-template\TPI-toroide\cmake-build-debug\CMakeFiles\juegoDeLaVida.dir\auxiliares.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "definiciones.h"
+        -:    2:#include "auxiliares.h"
+        -:    3:#include "ejercicios.h"
+        -:    4:
+        -:    5:int filas();
+        -:    6:
+        -:    7:using namespace std;
+        -:    8:
+        -:    9://Se verifica si el toroide es rectangular
+        5:   10:bool esRectangulo(const vector<vector<bool>> &t) {
+        5:   11:    if (t.empty()) {
+        5:   11-block  0
+        1:   12:        return false;
+        1:   12-block  0
+        -:   13:    }
+        4:   14:    int k = t[0].size();
+        4:   14-block  0
+        4:   15:    if (k == 0) {
+        2:   16:        return false;
+        2:   16-block  0
+        -:   17:    }
+        4:   18:    for (int i = 1; i < t.size(); ++i) {
+        2:   18-block  0
+        4:   18-block  1
+        2:   18-block  2
+        3:   19:        if (t[i].size() != k) {
+        3:   19-block  0
+        1:   20:            return false;
+        1:   20-block  0
+        -:   21:        }
+        -:   22:    }
+        1:   23:    return true;
+        1:   23-block  0
+        -:   24:}
+        -:   25:
+        -:   26://copia un toroide, me resulto necesario para poder hacer las evoluciones sin que se altere la comparacion
+     1136:   27:toroide copiarToroide(const toroide &t) {
+     2272:   28:    toroide tInicial(t.size(), vector<bool>());
+     1136:   28-block  0
+    $$$$$:   28-block  1
+    $$$$$:   28-block  2
+     6415:   29:    for (int i = 0; i < t.size(); ++i) {
+     6415:   29-block  0
+     5279:   29-block  1
+    27968:   30:        for (int j = 0; j < t[i].size(); ++j) {
+     5279:   30-block  0
+    27968:   30-block  1
+    22689:   30-block  2
+    22689:   31:            tInicial[i].push_back(t[i][j]);
+    22689:   31-block  0
+        -:   32:        }
+        -:   33:    }
+     1136:   34:    return tInicial;
+     1136:   34-block  0
+     1136:   34-block  1
+        -:   35:}
+        -:   36:
+       67:   37:bool sonIguales(toroide const &t1, toroide const &t2) {
+       67:   38:    bool resp = true;
+      332:   39:    for (int i = 0; i < t1.size(); ++i) {
+       67:   39-block  0
+      332:   39-block  1
+      265:   39-block  2
+     1100:   40:        for (int j = 0; j < t1[i].size(); ++j) {
+      265:   40-block  0
+     1100:   40-block  1
+      835:   40-block  2
+      835:   41:            if (t1[i][j] != t2[i][j]) {
+      835:   41-block  0
+      177:   42:                resp = false;
+      177:   42-block  0
+        -:   43:            }
+        -:   44:        }
+        -:   45:    }
+       67:   46:    return resp;
+       67:   46-block  0
+        -:   47:}
+        -:   48:
+        -:   49:// es basicamente esPeriodico pero sin la necesidad de un K como paramentro
+        6:   50:bool esCiclico(toroide const &t) {
+        6:   51:    int p = 0;
+       12:   52:    return esPeriodico(t, p);
+        6:   52-block  0
+        6:   52-block  1
+        6:   52-block  2
+        -:   53:}
+        -:   54:
+       59:   55:void moverDerecha(toroide &t) {
+      118:   56:    toroide tInicial = copiarToroide(t);
+       59:   56-block  0
+       59:   56-block  1
+       59:   57:    int xSize = t[0].size(); //lo use para que quede mas prolijo
+       59:   57-block  0
+      284:   58:    for (int i = 0; i < t.size(); ++i) {
+      284:   58-block  0
+      225:   58-block  1
+     1092:   59:        for (int j = 0; j < xSize; ++j) {
+      225:   59-block  0
+     1092:   59-block  1
+      867:   60:            int x = (j + 1) % xSize;
+      867:   61:            t[i][x] = tInicial[i][j];
+      867:   61-block  0
+        -:   62:        }
+        -:   63:    }
+       59:   64:}
+        -:   65:
+       15:   66:void moverAbajo(toroide &t) {
+       30:   67:    toroide tInicial = copiarToroide(t);
+       15:   67-block  0
+       15:   67-block  1
+       15:   68:    int ySize = t.size(); //lo use para que quede mas prolijo
+       15:   68-block  0
+       72:   69:    for (int i = 0; i < t.size(); ++i) {
+       72:   69-block  0
+       57:   69-block  1
+      276:   70:        for (int j = 0; j < t[0].size(); ++j) {
+       57:   70-block  0
+      276:   70-block  1
+      219:   71:            int y = (i + 1) % ySize;
+      219:   72:            t[y][j] = tInicial[i][j];
+      219:   72-block  0
+        -:   73:        }
+        -:   74:    }
+       15:   75:}
+        -:   76:
+        -:   77:// retorna superficie de menor rectangulo vivo
+        -:   78:// aclaración: por la forma que esta contruido el vector de posiciones vivas
+        -:   79:// sabemos que el 1er elemento siempra va a ser el menor Y posible
+       48:   80:int menorRectanguloVivo(vector<posicion> posicionesVivas) {
+       48:   81:    if (posicionesVivas.size() == 0) {
+       48:   81-block  0
+       16:   82:        return 0;
+       16:   82-block  0
+        -:   83:    }
+       32:   84:    int minX = posicionesVivas[0].second;
+       32:   84-block  0
+       32:   85:    int maxX = posicionesVivas[0].second;
+       32:   86:    int minY = posicionesVivas[0].first;
+       32:   87:    int maxY = posicionesVivas[0].first;
+       32:   88:    int x = 0;
+       32:   89:    int y = 0;
+       32:   90:    int res = 0;
+      160:   91:    for (int i = 0; i < posicionesVivas.size(); ++i) {
+      160:   91-block  0
+      128:   91-block  1
+      128:   92:        if (posicionesVivas[i].second < minX) {
+      128:   92-block  0
+       17:   93:            minX = posicionesVivas[i].second;
+       17:   93-block  0
+        -:   94:        }
+      128:   95:        if (posicionesVivas[i].second > maxX) {
+      128:   95-block  0
+       36:   96:            maxX = posicionesVivas[i].second;
+       36:   96-block  0
+        -:   97:        }
+      128:   98:        if (posicionesVivas[i].first > maxY) {
+      128:   98-block  0
+       48:   99:            maxY = posicionesVivas[i].first;
+       48:   99-block  0
+        -:  100:        }
+        -:  101:    }
+       32:  102:    x = maxX - minX + 1;
+       32:  103:    y = maxY - minY + 1;
+       32:  104:    res = x * y;
+       32:  105:    return res;
+       32:  105-block  0
+        -:  106:}
+        -:  107:
+        -:  108:// aqui se pueden ubicar todas las funciones auxiliares de soporte para la resolucion de los ejercicios
+        6:  109:pair<int, int> mp(int a, int b) {
+        6:  110:    return make_pair(a, b);
+        6:  110-block  0
+        -:  111:}
+        -:  112:
+        -:  113://No pueden usar esta función para resolver el TPI.
+        -:  114://Tampoco pueden usar iteradores, como usa esta función.
+        2:  115:vector<posicion> ordenar(vector<posicion> &v) {
+        2:  116:    sort(v.begin(), v.end());
+        2:  116-block  0
+        2:  117:    return v;
+        -:  118:}
